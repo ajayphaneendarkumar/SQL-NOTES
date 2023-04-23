@@ -1,0 +1,99 @@
+-->create database "database_name";
+-->show database;
+CREATE STATEMENT:-
+--------------------
+-->create table table_name(col1 data_type col2 data_type);
+   -->eg:- create table course(cid int(3) primary key , cname varchar(20) , fee int(5));
+           create table student (sid varchar(10)  , sname varchar(20) ,branch varchar(20) , email varchar(20) , references course(cid));
+-->data_type:it tells what type of data is stored in the field -->Integer(3) ,float()
+    -->char(20)
+    -->varchar(20)
+    -->CLOB -->character large object
+    -->BLOB-->Binary large object[Images,audio,video..]
+    -->date etc..
+-->show tables;
+--------------------------------------------
+SELECT STATEMENT:--->only specific records are dispalyed onthe screen
+-------------------
+-->select * from table_name;
+------------------------------
+INSERT STATEMENT:-
+-------------------
+syntax:
+-->Insert InTo table_name values(col1-value1 , col2_value2, col3_value3 , ....); -->to insert all valuess
+-->Insert InTo table_name (col1,col2,col3,..)values(value1,value2,...); -->to insert specific values.
+-->desc table_name;
+-------------------------------------------
+UPDATE STATEMENT:--->used to update the  specifc record values in the table .
+-----------------------------------------------------------------------------
+-->syntax:
+        update table_name set col1=value1 ,col2=value2 where conditon (eg:-cid =34)
+-----------------------------------------------------------------------------
+DLETE STATEMENT:-->used to delete specific records.
+ syntax:
+      delete from table_name where condition (eg:- sid=23);
+-----------------------------------------------------------------------------
+DISTINCT STATEMENT:-->used to filter out the duplicates
+ syntax:-
+      select distinct col1,col2,.. from table_name;
+   eg:-select distinct(branch) from students;
+-----------------------------------------------------------------------------
+ORDER BY:-->used to display the records either in ascending or descending order
+   syntax: 
+       select * from table_name order by col1,col2 .. ; -->ascending order
+       select * from table_name order by col1,col2 .. desc;-->descending order
+---------------------------------------------------------------------------------
+NULL Value:-
+---------------------
+-->NULL Value in thetable field represents the field has No Value.
+-->IS NULL SYNTAX:
+      select col_names from table_name where col_name IS NULL;
+-->IS NOT NULL SYNTAX:-
+      select col_names from table_name where col_name IS NOT NULL;
+--------------------------------------------------------------------------
+LIKE OPERATOR:-
+----------------
+Like Operator is used in a where clause to search for a speciffied pattern in a column.
+-->% operator is used to search for one or more characters.
+-->(_) operator is used to search for one or two characters.
+-->syntax : 
+    select * from table_name where col_name like R%;
+    select * from table_name where col_name like %R;
+    select * from table_name where col_name like __;
+---------------------------------------------------------------------------------------
+AND , OR && NOT operators:-
+--------------------------------------
+these operators can be used in where clause.
+-->syntax: -
+      select * from table where col_name between value1 and value2;
+      select * from table where col_name=value1 OR col_name=value2;
+----------------------------------------------------------------------------------------
+AGGREGATE FUNCTIONS:-
+-------------------------
+ MIN,MAX,SUM,AVG,COUNT
+syntaxes:
+     select min(col_name) from table_name ;
+     select max(col_name) from table_name;
+     select sum(col_name) from table_name;
+     select avg(col_name) from table_name;
+     select count(*) from table_name;
+     select count(col_name) from table_name;
+note: Null values are not considered in the count function
+--------------------------------------------------------------------------------
+GROUP BY :- this clause   used to group the similar col_names and then seperated.
+  syntax: 
+       select col_name ,count(*) from table_name group by col_name;
+===============================================================================
+HAVING CLAUSE:- having clause was added to the sql because where cannot used without aggregate functions.
+  syntax: 
+     select col_name from table_name group by col_name HAVING count(*) > 2 or count(col_name) >2;
+------------------------------------------------------------------------------------------------------
+JOINS:-
+====================
+Syntax:
+   inner join -->shows the common records in both the tables
+     select col1,col2,col3,col4.. from table_name1 inner join table_name2 on condition ;
+   left outter join-->shows the both common records and all the left table record values and right side tables are inserted as NULL.
+        select col1,col2,col3,col4.. from table_name1 left outter join table_name2 on condition ;
+   Right outter join-->shows the both common records and all the right table record values and left side tables are inserted as NULL.
+       select col1,col2,col3,col4.. from table_name1 right outter join table_name2 on condition ;
